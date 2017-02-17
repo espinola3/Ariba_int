@@ -1,0 +1,2 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" Inherits="AribaTest.Site" Codebehind="Site.Master.vb" %>
+

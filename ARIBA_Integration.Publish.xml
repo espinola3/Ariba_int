@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="B:\WebApps\ARIBA_Integration" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Perfil1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/AribaTest.pdb" publishTime="06/23/2016 08:19:18" />
+    <file relUrl="bin/AribaTest.xml" publishTime="06/23/2016 08:19:18" />
+    <file relUrl="Global.asax" publishTime="06/21/2016 12:48:59" />
+    <file relUrl="Web.config" publishTime="06/23/2016 08:03:22" />
+    <file relUrl="Default.aspx" publishTime="06/23/2016 08:14:27" />
+    <file relUrl="Site.master" publishTime="06/21/2016 13:56:27" />
+    <file relUrl="bin/AribaTest.dll" publishTime="06/23/2016 08:19:18" />
+    <file relUrl="About.aspx" publishTime="06/21/2016 13:55:53" />
+  </publishProfile>
+</publishData>

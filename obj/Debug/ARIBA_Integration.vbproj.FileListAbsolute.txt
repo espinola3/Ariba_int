@@ -1,0 +1,8 @@
+N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\bin\ARIBA_Integration.dll
+N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\bin\ARIBA_Integration.pdb
+N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\bin\ARIBA_Integration.xml
+N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\obj\Debug\ARIBA_Integration.Resources.resources
+N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\obj\Debug\ARIBA_Integration.vbproj.GenerateResource.Cache
+N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\obj\Debug\ARIBA_Integration.dll
+N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\obj\Debug\ARIBA_Integration.xml
+N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\obj\Debug\ARIBA_Integration.pdb

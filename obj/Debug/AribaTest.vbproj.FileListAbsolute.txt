@@ -1,0 +1,8 @@
+C:\Users\esmarta0\Desktop\Projectes\AribaTest\AribaTest\AribaTest\bin\AribaTest.dll
+C:\Users\esmarta0\Desktop\Projectes\AribaTest\AribaTest\AribaTest\bin\AribaTest.pdb
+C:\Users\esmarta0\Desktop\Projectes\AribaTest\AribaTest\AribaTest\bin\AribaTest.xml
+C:\Users\esmarta0\Desktop\Projectes\AribaTest\AribaTest\AribaTest\obj\Debug\AribaTest.Resources.resources
+C:\Users\esmarta0\Desktop\Projectes\AribaTest\AribaTest\AribaTest\obj\Debug\AribaTest.vbproj.GenerateResource.Cache
+C:\Users\esmarta0\Desktop\Projectes\AribaTest\AribaTest\AribaTest\obj\Debug\AribaTest.dll
+C:\Users\esmarta0\Desktop\Projectes\AribaTest\AribaTest\AribaTest\obj\Debug\AribaTest.xml
+C:\Users\esmarta0\Desktop\Projectes\AribaTest\AribaTest\AribaTest\obj\Debug\AribaTest.pdb
