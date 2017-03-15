@@ -4,6 +4,8 @@ Imports System.Data.SqlClient
 Imports System.Data.SqlTypes
 Imports System.Net
 Imports System.IO
+Imports System.Net.Mail
+Imports System.Net.Mime
 
 Partial Class _Default
     Inherits System.Web.UI.Page
@@ -22,22 +24,36 @@ Partial Class _Default
     Dim LinQuant As Double
     Dim LinSKU As String
     Dim LinPrice As Double
-    Dim EntryXMLTimeStamp, OrderDate, TotalOrder As String
-    Dim PNASku As String
+    Dim EntryXMLTimeStamp As String = ""
+    Dim OrderDate As String = ""
+    Dim TotalOrder As String = ""
+    Dim PNASku, CustNbr As String
     Dim Node_PNASku As XmlNode
     Dim ConB2B As New SqlConnection
     Dim ConB2B2 As New SqlConnection
+    Dim cmdInsertStatus As New SqlCommand
+    Dim carrierCode, User, Password As String
+    Dim SuffixSql As String
 
+    
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        User = "ESPINOLA"
+        Password = "Imes-12345"
+        carrierCode = "GN"
+
         ConB2B.ConnectionString = ConfigurationManager.ConnectionStrings("ConB2B").ConnectionString
         ConB2B2.ConnectionString = ConfigurationManager.ConnectionStrings("ConB2B").ConnectionString
         Dim ErrorFound As Boolean = False
         Dim ErrorString As String = ""
-        Dim OrderID, OrderType, TotalMoney As String
+        'Dim OrderID1 As String = ""
+        Dim OrderID As String = ""
+        Dim OrderType As String = ""
+        Dim TotalMoney As String = ""
         Dim gSave As New Guid
         gSave = Guid.NewGuid()
-        Dim payloadID As String
+        Dim payloadID As String = ""
         Response.ContentType = "text/xml"
         If Request.TotalBytes > 0 Then
             StrResponse = "Sin datos"
@@ -56,16 +72,23 @@ Partial Class _Default
 
                 ' ____ BORRAR LINEA DTD ____ '
                 xmlDoc.Load(Request.InputStream)
+                Dim XDType As XmlDocumentType = xmlDoc.DocumentType
+                xmlDoc.RemoveChild(XDType)
                 'xmlDoc.Save("C:\inetpub\wwwroot\WebApps\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml") 'Producció
                 xmlDoc.Save("N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml") 'Local
                 'Dim linesList As New List(Of String)(System.IO.File.ReadAllLines("C:\inetpub\wwwroot\WebApps\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml"))
                 Dim linesList As New List(Of String)(System.IO.File.ReadAllLines("N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml"))
-                'linesList.RemoveAt(0)
-                linesList.RemoveAt(1)
+                linesList.RemoveAt(0)
+                'linesList.RemoveAt(1)
+
+                'xmlDoc.Save("C:\inetpub\wwwroot\WebApps\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml") 'Producció
+                xmlDoc.Save("N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml") 'Local
+
                 'File.WriteAllLines("C:\inetpub\wwwroot\WebApps\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml", linesList.ToArray()) 'Producció
                 File.WriteAllLines("N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml", linesList.ToArray()) 'Local
                 'xmlDoc.Load("C:\inetpub\wwwroot\WebApps\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml") 'Producció
                 xmlDoc.Load("N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml") 'Local
+                'EntryXMLTimeStamp = xmlCXMLNode.Attributes("timestamp").InnerText
 
 
             Catch ex As Exception
@@ -84,6 +107,7 @@ Partial Class _Default
                 payloadID = xmlCXMLNode.Attributes("payloadID").InnerText
                 Node_OrderID = xmlCXMLNode.SelectSingleNode("/cXML/Request/OrderRequest/OrderRequestHeader").Attributes("orderID")
                 OrderID = GetInnerText(Node_OrderID)
+
             Catch ex As Exception
                 'Response.Write("Error Info General")
                 ErrorFound = True
@@ -108,7 +132,7 @@ Partial Class _Default
             Dim cmdinsertOrderID As New SqlCommand
             ConB2B.Open()
             Dim insertedID As String = ""
-            cmdinsertOrderID.CommandText = "INSERT INTO ARIBA_OrderRequest_Header (OrderID) VALUES (" + OrderID + "); Select SCOPE_IDENTITY()"
+            cmdinsertOrderID.CommandText = "INSERT INTO ARIBA_OrderRequest_Header (OrderID) VALUES ('" + OrderID + "'); Select SCOPE_IDENTITY()"
             cmdinsertOrderID.Connection = ConB2B
             Try
                 insertedID = cmdinsertOrderID.ExecuteScalar()
@@ -201,9 +225,48 @@ Partial Class _Default
                 Node_ExtBuyerVatID = xmlCXMLNode.SelectSingleNode("/cXML/Request/OrderRequest/OrderRequestHeader/Extrinsic[@name='buyerVatID']")
                 ExtBuyerVatID = GetInnerText(Node_ExtBuyerVatID)
             Catch ex As Exception
-                ErrorString = ErrorString + "-Error Extincts"
-                ErrorFound = True
+
             End Try
+
+            ' ____ Find ShipToSql ____ '
+
+            Dim cmdSelectQuerySuffix, cmdSelectQueryKeyWord, cmdSelectQueryPC, cmdSelectQueryCity As New SqlCommand
+
+            Dim KeyWord(3) As String
+
+            cmdSelectQueryKeyWord.CommandText = "SELECT KeyWord1 FROM ARIBA_CustomerInfo WHERE (Ext_BuyerVATID LIKE '" + ExtBuyerVatID + "%' AND ST_PA_City = '" + STPACity + "' AND ST_PA_PostalCode = '" + STPAPostalCode + "')"
+            cmdSelectQueryKeyWord.Connection = ConB2B2
+            ConB2B2.Open()
+            KeyWord(0) = cmdSelectQueryKeyWord.ExecuteScalar()
+            cmdSelectQueryKeyWord.CommandText = "SELECT KeyWord2 FROM ARIBA_CustomerInfo WHERE (Ext_BuyerVATID LIKE '" + ExtBuyerVatID + "%' AND ST_PA_City = '" + STPACity + "' AND ST_PA_PostalCode = '" + STPAPostalCode + "')"
+            KeyWord(1) = cmdSelectQueryKeyWord.ExecuteScalar()
+            cmdSelectQueryKeyWord.CommandText = "SELECT KeyWord3 FROM ARIBA_CustomerInfo WHERE (Ext_BuyerVATID LIKE '" + ExtBuyerVatID + "%' AND ST_PA_City = '" + STPACity + "' AND ST_PA_PostalCode = '" + STPAPostalCode + "')"
+            KeyWord(2) = cmdSelectQueryKeyWord.ExecuteScalar()
+
+
+            Dim FirstKeyWord As Integer = STPAStreet.IndexOf(KeyWord(0))
+            Dim SecondKeyWord As Integer = STPAStreet.IndexOf(KeyWord(1))
+            Dim ThirdKeyWord As Integer = STPAStreet.IndexOf(KeyWord(2))
+
+            If (FirstKeyWord <> -1 And SecondKeyWord <> -1 And ThirdKeyWord <> -1) Then
+
+                Try
+                    cmdSelectQuerySuffix.CommandText = "SELECT ShiptoSuffix FROM ARIBA_CustomerInfo WHERE (Ext_BuyerVATID LIKE '" + ExtBuyerVatID + "%' AND ST_PA_City = '" + STPACity + "' AND ST_PA_PostalCode = '" + STPAPostalCode + "' AND KeyWord1 = '" + KeyWord(0) + "' AND KeyWord2 = '" + KeyWord(1) + " 'AND KeyWord3 = '" + KeyWord(2) + "')"
+                    cmdSelectQuerySuffix.Connection = ConB2B2
+                    SuffixSql = cmdSelectQuerySuffix.ExecuteScalar()
+                Catch ex As Exception
+                    ErrorString = ErrorString + "-Error Extincts"
+                    ErrorFound = True
+                End Try
+
+            Else
+                SuffixSql = ""
+            End If
+
+
+
+
+            ConB2B2.Close()
 
             ' ____ TIMESTAMPS ____ '
             Dim MessageTS As String()
@@ -247,7 +310,7 @@ Partial Class _Default
                     IO_RequestedDeliveryDateInsert = IO_RequestedDeliveryDate(0).Replace("T", " ")
                     Node_IO_IID_SupplierPartID = Item.SelectSingleNode("ItemID/SupplierPartID")
                     IO_IID_SupplierPartID = GetInnerText(Node_IO_IID_SupplierPartID)
-                    IO_IID_SupplierPartID = IO_IID_SupplierPartID.Replace("#", "Ñ")
+                    'IO_IID_SupplierPartID = IO_IID_SupplierPartID.Replace("#", "Ñ")
                     Node_IO_IID_BuyerPartID = Item.SelectSingleNode("ItemID/BuyerPartID")
                     IO_IID_BuyerPartID = GetInnerText(Node_IO_IID_BuyerPartID)
                     Node_IO_ID_UP_Money = Item.SelectSingleNode("ItemDetail/UnitPrice/Money")
@@ -264,6 +327,22 @@ Partial Class _Default
                 IO_QuantityInt = Convert.ToDecimal((IO_QuantityArr(0)))
 
                 ' ____ SEND PNA ____ '
+                Try
+                    ConB2B2.Open()
+                Catch ex As Exception
+                    'Response.Write("Error conectando B2B")
+                End Try
+                ' __ Finding SKU __ '
+                Dim cmdSelectQueryB2BLine As New SqlCommand
+                cmdSelectQueryB2BLine.CommandText = "SELECT * FROM SKU_VPN WHERE VPN LIKE '" + IO_IID_SupplierPartID + "%'"
+
+                cmdSelectQueryB2BLine.Connection = ConB2B2
+                Try
+                    PNASku = cmdSelectQueryB2BLine.ExecuteScalar()
+                Catch ex As Exception
+                    ErrorFound = True
+                    ErrorString = ErrorString + "-Error instertando LineInfo"
+                End Try
 
                 Dim gPNA As Guid
                 gPNA = Guid.NewGuid()
@@ -279,9 +358,9 @@ Partial Class _Default
                 xmlText = xmlText & "<CountryCode>ES</CountryCode>" & vbCrLf
                 xmlText = xmlText & "<LoginID>Carbo12345</LoginID>" & vbCrLf
                 xmlText = xmlText & "<Password>29080707xM</Password>" & vbCrLf
-                xmlText = xmlText & "<TransactionID>{14B27C08-ADA6-406B-B7E3-4103A5408C2A}</TransactionID>" & vbCrLf
+                xmlText = xmlText & "<TransactionID>{14B27C08-ADA6-406B-B7E3-9993A5408C2A}</TransactionID>" & vbCrLf
                 xmlText = xmlText & "</TransactionHeader>" & vbCrLf
-                xmlText = xmlText & "<PNAInformation ManufacturerPartNumber='" + IO_IID_SupplierPartID + "' Quantity='1' ReservedInventory='N'/>" & vbCrLf
+                xmlText = xmlText & "<PNAInformation SKU='" + PNASku + "' Quantity='1' ReservedInventory='N'/>" & vbCrLf
                 xmlText = xmlText & "<ShowDetail>2</ShowDetail>" & vbCrLf
                 xmlText = xmlText & "</PNARequest>" & vbCrLf
 
@@ -297,7 +376,7 @@ Partial Class _Default
 
                 ResponsePNAReq.LoadXml(wdata)
                 Node_PNASku = ResponsePNAReq.SelectSingleNode("/PNAResponse/PriceAndAvailability/SKU")
-                PNASku = GetInnerText(Node_PNASku)
+                'PNASku = GetInnerText(Node_PNASku)
                 If (String.IsNullOrWhiteSpace(PNASku)) Then
                     ErrorPNA = True
                 Else
@@ -309,11 +388,6 @@ Partial Class _Default
                 IM_Price = IM_Price.Replace(",", ".")
 
 
-                Try
-                    ConB2B2.Open()
-                Catch ex As Exception
-                    'Response.Write("Error conectando B2B")
-                End Try
 
                 ' ____ INSERT LINE INFO ____ '
                 Dim cmdInsertQueryB2BLine As New SqlCommand
@@ -346,7 +420,7 @@ Partial Class _Default
             Dim cmdInsertQueryB2BHeader As New SqlCommand
             cmdInsertQueryB2BHeader.Connection = ConB2B
 
-            cmdInsertQueryB2BHeader.CommandText = "UPDATE ARIBA_OrderRequest_Header SET From_NID_Identity = '" + From_NID + "' , From_SID_Identity = '" + From_SID + "', To_NID_Identity ='" + To_NID + "', OrderID ='" + OrderID + "',OrderType='" + OrderType + "', Total_Money='" + TotalMoney + "', ST_AddressID = '" + STAddressID + "', ST_Name='" + STName + "', ST_PA_Name='" + STPAName + "', ST_PA_DelvierTo='" + STPADeliverTo + "', ST_PA_Street ='" + STPAStreet + "' , ST_PA_City='" + STPACity + "', ST_PA_State='" + STPAState + "', ST_PA_PostalCode = '" + STPAPostalCode + "', ST_PA_Country='" + STPACountry + "', Ext_CompanyCode='" + ExtCompanyCode + "' , Ext_BuyerPurchasingCode='" + ExtBuyerPurchasingCode + "', Ext_VendorIDNbr='" + ExtVendorIDNbr + "', Ext_BuyerVATID='" + ExtBuyerVatID + "', ReceptionDateTime = DEFAULT, MessageTimeStamp = '" + MessageTSInsert + "', OrderTimestamp = '" + ORderTSInsert + "' "
+            cmdInsertQueryB2BHeader.CommandText = "UPDATE ARIBA_OrderRequest_Header SET From_NID_Identity = '" + From_NID + "' , From_SID_Identity = '" + From_SID + "', To_NID_Identity ='" + To_NID + "', OrderID ='" + OrderID + "',OrderType='" + OrderType + "', Total_Money='" + TotalMoney + "', ST_AddressID = '" + STAddressID + "', ST_Name='" + STName + "', ST_PA_Name='" + STPAName + "', ST_PA_DelvierTo='" + STPADeliverTo + "', ST_PA_Street ='" + STPAStreet + "' , ST_PA_City='" + STPACity + "', ST_PA_State='" + STPAState + "', ST_PA_PostalCode = '" + STPAPostalCode + "', ST_PA_Country='" + STPACountry + "', Ext_CompanyCode='" + ExtCompanyCode + "' , Ext_BuyerPurchasingCode='" + ExtBuyerPurchasingCode + "', Ext_VendorIDNbr='" + ExtVendorIDNbr + "', Ext_BuyerVATID='" + ExtBuyerVatID + "', ReceptionDateTime = DEFAULT, MessageTimeStamp = '" + MessageTSInsert + "', OrderTimestamp = '" + ORderTSInsert + "' WHERE OrderID = '" + OrderID + "'"
             Try
                 cmdInsertQueryB2BHeader.ExecuteNonQuery()
             Catch ex As Exception
@@ -442,7 +516,7 @@ Partial Class _Default
             readerQueryFFCheck.Close()
             ConB2B.Close()
 
-            ' ____ XML IM ORDER ENTRY 2.5 CONSTRUCTOR ____ '
+            ' ____ XML IM ORDER ENTRY 2.0 CONSTRUCTOR ____ '
             Dim xmlOrderEntryText As String
             Dim xmlOrderEntry As New XmlDocument()
             xmlOrderEntryText = "<OrderRequest>"
@@ -451,19 +525,33 @@ Partial Class _Default
             xmlOrderEntryText = xmlOrderEntryText & "<SenderID>IM CUSTOMER</SenderID>"
             xmlOrderEntryText = xmlOrderEntryText & "<ReceiverID>INGRAM MICRO</ReceiverID>"
             xmlOrderEntryText = xmlOrderEntryText & "<CountryCode>ES</CountryCode>"
-            xmlOrderEntryText = xmlOrderEntryText & "<LoginID>Carbo12345</LoginID>"
-            xmlOrderEntryText = xmlOrderEntryText & "<Password>29080707xM</Password>"
-            xmlOrderEntryText = xmlOrderEntryText & "<TransactionID>{14B27C08-ADA6-406B-B7E3-4103A5408C2A}</TransactionID>"
+            xmlOrderEntryText = xmlOrderEntryText & "<LoginID>" + User + "</LoginID>"
+            xmlOrderEntryText = xmlOrderEntryText & "<Password>" + Password + "</Password>"
+            xmlOrderEntryText = xmlOrderEntryText & "<TransactionID>{" + gSave.ToString + "}</TransactionID>"
             xmlOrderEntryText = xmlOrderEntryText & "</TransactionHeader>"
             xmlOrderEntryText = xmlOrderEntryText & "<OrderHeaderInformation>"
             xmlOrderEntryText = xmlOrderEntryText & " <BillToSuffix>000</BillToSuffix>"
             xmlOrderEntryText = xmlOrderEntryText & "<AddressingInformation>"
             xmlOrderEntryText = xmlOrderEntryText & "<CustomerPO>" + OrderID + "</CustomerPO>"
             xmlOrderEntryText = xmlOrderEntryText & "<ShipToAttention>AribaTest</ShipToAttention>"
+            xmlOrderEntryText = xmlOrderEntryText & "<ShipTo>"
+            If (FirstKeyWord <> -1 Or SecondKeyWord <> -1 Or ThirdKeyWord <> -1) Then
+                xmlOrderEntryText = xmlOrderEntryText & "<Address>"
+                xmlOrderEntryText = xmlOrderEntryText & "<ShipToAddress1>" + STPAStreet + "</ShipToAddress1>"
+                xmlOrderEntryText = xmlOrderEntryText & " <ShipToAddress2></ShipToAddress2>"
+                xmlOrderEntryText = xmlOrderEntryText & " <ShipToAddress3></ShipToAddress3>"
+                xmlOrderEntryText = xmlOrderEntryText & " <ShipToCity>" + STPACity + "</ShipToCity>"
+                xmlOrderEntryText = xmlOrderEntryText & " <ShipToProvince>" + STPAState + "</ShipToProvince>"
+                xmlOrderEntryText = xmlOrderEntryText & " <ShipToPostalCode>" + STPAPostalCode + "</ShipToPostalCode>"
+                xmlOrderEntryText = xmlOrderEntryText & " </Address>"
+            Else
+                xmlOrderEntryText = xmlOrderEntryText & "<Suffix><ShipToSuffix>2" + SuffixSql + "</ShipToSuffix> </Suffix>"
+            End If
+            xmlOrderEntryText = xmlOrderEntryText & " </ShipTo>"
             xmlOrderEntryText = xmlOrderEntryText & "</AddressingInformation>"
             xmlOrderEntryText = xmlOrderEntryText & "<ProcessingOptions>"
-            xmlOrderEntryText = xmlOrderEntryText & "<CarrierCode>GN</CarrierCode>"
-            xmlOrderEntryText = xmlOrderEntryText & "<AutoRelease>1</AutoRelease>"
+            xmlOrderEntryText = xmlOrderEntryText & "<CarrierCode>" + carrierCode + "</CarrierCode>"
+            xmlOrderEntryText = xmlOrderEntryText & "<AutoRelease>0</AutoRelease>"
             xmlOrderEntryText = xmlOrderEntryText & "<ShipmentOptions>"
             xmlOrderEntryText = xmlOrderEntryText & "<BackOrderFlag>Y</BackOrderFlag>"
             xmlOrderEntryText = xmlOrderEntryText & "<SplitShipmentFlag>Y</SplitShipmentFlag>"
@@ -509,10 +597,24 @@ Partial Class _Default
             ' Response.Write("Transacción realizada correctamente")
 
             '____ Guardar Error DB ____' 
-            Dim ReaderXML2 As XmlTextReader
-            Dim ParametroSQLXML2 As New SqlXml
-            If (ErrorFound) Then
+            Dim ReaderXML2, ReaderXML3 As XmlTextReader
+            Dim ParametroSQLXML2, ParametroSQLXML3 As New SqlXml
 
+            If (ErrorFound) Then
+                ' ____ INSERT STATUS ____ '
+
+                cmdInsertStatus.Connection = ConB2B
+
+                cmdInsertQueryB2BHeader.CommandText = "UPDATE ARIBA_OrderRequest_Header SET Status = 'Error' WHERE OrderID = '" + OrderID + "'"
+                ConB2B.Open()
+                Try
+                    cmdInsertQueryB2BHeader.ExecuteNonQuery()
+                Catch ex As Exception
+                    'Response.Write("Error insertando OrderHeader")
+                    ErrorFound = True
+                    ErrorString = ErrorString + "-Error insertando Orderheader"
+                End Try
+                ConB2B.Close()
                 Try
                     ConB2B.Open()
                     Using cmdXML As SqlCommand = ConB2B.CreateCommand()
@@ -528,9 +630,44 @@ Partial Class _Default
                     End Using
                 Catch ex As Exception
                     ErrorFound = True
-                    ErrorString = ErrorString + "-Error insertando DBError"
+                    ErrorString = ErrorString + "-Error insertando StatusError"
                 End Try
 
+                ConB2B.Close()
+
+            Else
+
+                ConB2B.Open()
+                cmdInsertStatus.Connection = ConB2B
+
+                cmdInsertQueryB2BHeader.CommandText = "UPDATE ARIBA_OrderRequest_Header SET Status = 'Successful' WHERE OrderID = '" + OrderID + "'"
+                LoadXMLErrorOrderheader.Save("N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\XML-OrdersResponseImpulse\" + gSave.ToString + "-RESPONSE.xml") 'Local
+
+                Try
+
+                    Using cmdXML As SqlCommand = ConB2B.CreateCommand()
+                        cmdXML.CommandText = "UPDATE ARIBA_OrderRequest_Header SET OrderResponseImpulse = @XMLFILE2 WHERE OrderID = '" + OrderID + "'"
+                        'Dim xmlPath As String = "C:\inetpub\wwwroot\WebApps\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml" 'Producció
+                        Dim xmlPath As String = "N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\XML-OrdersResponseImpulse\" + gSave.ToString + "-RESPONSE.xml" 'Local
+                        ReaderXML3 = New XmlTextReader(xmlPath)
+                        ParametroSQLXML3 = New SqlXml(ReaderXML3)
+                        cmdXML.Parameters.AddWithValue("@XMLFILE2", ParametroSQLXML3)
+                        cmdXML.ExecuteNonQuery()
+                        cmdXML.Dispose()
+                        ReaderXML3.Close()
+                    End Using
+                Catch ex As Exception
+                    ErrorFound = True
+                    ErrorString = ErrorString + "-Error insertando XML- Response"
+                End Try
+
+                Try
+                    cmdInsertQueryB2BHeader.ExecuteNonQuery()
+                Catch ex As Exception
+                    'Response.Write("Error insertando OrderHeader")
+                    ErrorFound = True
+                    ErrorString = ErrorString + "-Error insertando StatusSuccessful"
+                End Try
                 ConB2B.Close()
             End If
         Else
@@ -544,7 +681,7 @@ Partial Class _Default
         'START Config_Mail
         Dim Mail As New System.Net.Mail.MailMessage
         Mail.From = New System.Net.Mail.MailAddress("DoNotReply@ingrammicro.es")
-        Mail.To.Add("rahul.bhambi@ingrammicro.com")
+        Mail.To.Add("ernest.espinola@ingrammicro.com")
         'Mail.Bcc.Add("jordi.carbo@ingrammicro.com")
         Mail.Subject = "Errores Ariba" + OrderID
         Mail.IsBodyHtml = True
@@ -552,13 +689,22 @@ Partial Class _Default
         smtp.Host = "172.31.16.50" 'Mail Relay de pruebas para Visual Studio va de PM! local
         'smtp.Port = 25 ' Producción
         'END Config_Mail
+        Dim attachment As System.Net.Mail.Attachment
+
 
         If (ErrorFound) Then
             Mail.Body = "Se ha detectado un error para el OrderID de Ariba: " + OrderID + ". El motivo de el/los error(es) és el siguiente: " + ErrorString + ". Para cualquier clarificación contactar a <a href=""mailto:SoporteWeb@ingrammicro.com"">SoporteWeb</a>"
             Try
+                attachment = New System.Net.Mail.Attachment("N:\eCommerce\Aplicaciones WEB\ARIBA_Integration\cXML-OrdersAriba\" + gSave.ToString + ".xml")
+                Mail.Attachments.Add(attachment)
+            Catch ex As Exception
+                Response.Write("Error adjuntando archivo")
+            End Try
+
+            Try
                 smtp.Send(Mail)
             Catch ex As Exception
-                Response.Write("ERror enviando mail")
+                Response.Write("Error enviando mail")
             End Try
         End If
 
@@ -570,6 +716,14 @@ Partial Class _Default
     Private Function GetInnerText(node As XmlNode) As String
         If node Is Nothing Then Return ""
         Return node.InnerText
+
+    End Function
+
+    Private Function GetInnerInt(node As String) As Integer
+        Dim node2 As Integer
+        node2 = CInt(node)
+        Return (node2)
+
     End Function
 
     Private Function GetInnerXml(node As XmlNode) As String

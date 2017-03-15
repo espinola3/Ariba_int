@@ -1,0 +1,145 @@
+<cXML payloadID="CFE2AFAF0A6A1EE684C1428E33444503" timestamp="2016-05-04T17:08:38+02:00" version="1.2.028">
+  <Header>
+    <From>
+      <Credential domain="NetworkID">
+        <Identity>AN01000279414-T</Identity>
+      </Credential>
+      <Credential domain="SystemID">
+        <Identity>C37CLNT010</Identity>
+      </Credential>
+    </From>
+    <To>
+      <Credential domain="NetworkID">
+        <Identity>AN01000348381-T</Identity>
+      </Credential>
+    </To>
+    <Sender>
+      <Credential domain="AribaNetworkUserId">
+        <Identity>sysadmin@ariba.com</Identity>
+      </Credential>
+      <UserAgent>ARBERP/SAP_APPL/617/0008</UserAgent>
+    </Sender>
+  </Header>
+  <Request deploymentMode="test">
+    <OrderRequest>
+      <OrderRequestHeader orderDate="2016-05-04T12:00:00+02:00" orderID="7070080863" orderType="regular" orderVersion="1" type="new">
+        <Total>
+          <Money currency="EUR">1004.0</Money>
+        </Total>
+        <ShipTo>
+          <Address addressID="C37290472" isoCountryCode="ES">
+            <Name xml:lang="en">Roche Diagnostics S.L.</Name>
+            <PostalAddress name="default">
+              <DeliverTo>2033 Ventas Cliente</DeliverTo>
+              <Street>Avda. de la Generalitat 171-173</Street>
+              <City>Sant Cugat del Vallès</City>
+              <State>08</State>
+              <PostalCode>08174</PostalCode>
+              <Country isoCountryCode="ES" />
+            </PostalAddress>
+          </Address>
+        </ShipTo>
+        <BillTo>
+          <Address isoCountryCode="ES">
+            <Name xml:lang="es">Roche Diagnostics Spain</Name>
+            <PostalAddress name="ROCHE DIAGNOSTICS S.L.">
+              <Street>Av. De la Generalitat, 171-173</Street>
+              <City>Sant Cugat del Vallès</City>
+              <State>08</State>
+              <PostalCode>08174</PostalCode>
+              <Country isoCountryCode="ES" />
+            </PostalAddress>
+            <Phone>
+              <TelephoneNumber>
+                <CountryCode isoCountryCode="ES">34</CountryCode>
+                <AreaOrCityCode>
+                </AreaOrCityCode>
+                <Number>34 93 5834000</Number>
+              </TelephoneNumber>
+            </Phone>
+          </Address>
+          <IdReference domain="buyerID" identifier="1624" />
+        </BillTo>
+        <PaymentTerm payInNumberOfDays="30">
+          <Discount>
+            <DiscountPercent percent="0.000" />
+          </Discount>
+        </PaymentTerm>
+        <Contact role="supplierCorporate">
+          <Name xml:lang="es">INGRAM MICRO, S.L.</Name>
+          <PostalAddress>
+            <Street>Antonio Machado 78-80 1ª y 2ª plant</Street>
+            <City>VILADECANS</City>
+            <State>08</State>
+            <PostalCode>08840</PostalCode>
+            <Country isoCountryCode="ES" />
+          </PostalAddress>
+          <Email name="default">ocolell@ingrammicro.es</Email>
+          <Phone>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES">34</CountryCode>
+              <AreaOrCityCode />
+              <Number>934749135</Number>
+            </TelephoneNumber>
+          </Phone>
+          <Fax>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES">34</CountryCode>
+              <AreaOrCityCode />
+              <Number>934749358</Number>
+            </TelephoneNumber>
+          </Fax>
+        </Contact>
+        <Contact role="sales">
+          <Name xml:lang="es">Susana Mayordomo</Name>
+          <Phone>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES" />
+              <AreaOrCityCode />
+              <Number>934749152</Number>
+            </TelephoneNumber>
+          </Phone>
+        </Contact>
+        <TermsOfDelivery>
+          <TermsOfDeliveryCode value="TransportCondition" />
+          <ShippingPaymentMethod value="Other" />
+          <TransportTerms value="CIP">Carriage and insurance paid to</TransportTerms>
+          <Address>
+            <Name xml:lang="es">Ver dirección en pedido</Name>
+          </Address>
+        </TermsOfDelivery>
+        <Extrinsic name="CompanyCode">ROCHE DIAGNOSTICS S.L.</Extrinsic>
+        <Extrinsic name="buyerPurchasingCode">Mentxu Julià</Extrinsic>
+        <Extrinsic name="vendorIDNo">0048001455</Extrinsic>
+        <Extrinsic name="buyerVatID">ESB61503355</Extrinsic>
+        <Extrinsic name="paymentTermsDescription">Within 30 days Due net</Extrinsic>
+        <Extrinsic name="touVersion"> Condiciones de Pago: Según condiciones pactadas.  Por transferencia bancaria a la cuenta que Vds. nos indiquen Quedamos a la espera de su confirmación por escrito, notificándoles que de no recibirla dentro de 10 días, este pedido se entiende aceptado en todas sus partes. El proveedor manifiesta que cumple y cumplirá con las directrices indicadas en el Código de Conducta para Proveedores del Grupo Roche el cual ha recibido. De no haberlo recibido, por favor solicítelo a sant_cugat_dia.procurement@roche.com .</Extrinsic>
+        <Extrinsic name="vendorTerms"> Roche Diagnostics SL Avda. de la Generalitat, 171-173 E-08174 Sant Cugat del Vallès Barcelona España Tel: 935834000 Fax: 935834340 Registro Mercantil de Barcelona, T30354f104 hoja B-173656- C.I.F B61503355 VAT ESB61503355. Sociedad Unipersonal</Extrinsic>
+      </OrderRequestHeader>
+      <ItemOut lineNumber="10" quantity="50.0" requestedDeliveryDate="2016-06-05T12:00:00+02:00">
+        <ItemID>
+          <SupplierPartID>C5707A</SupplierPartID>
+        </ItemID>
+        <ItemDetail>
+          <UnitPrice>
+            <Money currency="EUR">20.08</Money>
+          </UnitPrice>
+          <Description xml:lang="es">Printer MS410 -CS- Coagulation</Description>
+          <UnitOfMeasure>PCE</UnitOfMeasure>
+          <PriceBasisQuantity conversionFactor="1" quantity="1.0">
+            <UnitOfMeasure>PCE</UnitOfMeasure>
+          </PriceBasisQuantity>
+          <Classification domain="not available">do not use</Classification>
+          <Extrinsic name="nccExtrinsic2">X</Extrinsic>
+          <Extrinsic name="nccExtrinsic3">
+          </Extrinsic>
+          <Extrinsic name="contractNumber">
+          </Extrinsic>
+        </ItemDetail>
+        <ScheduleLine lineNumber="1" quantity="50.0" requestedDeliveryDate="2016-06-05T12:00:00+02:00">
+          <UnitOfMeasure>PCE</UnitOfMeasure>
+        </ScheduleLine>
+      </ItemOut>
+    </OrderRequest>
+  </Request>
+</cXML>

@@ -3,7 +3,7 @@
   <Header>
     <From>
       <Credential domain="NetworkID">
-        <Identity>AN01000279414</Identity>
+        <Identity>AN01000279414-T</Identity>
       </Credential>
       <Credential domain="SystemID">
         <Identity>P37CLNT010</Identity>

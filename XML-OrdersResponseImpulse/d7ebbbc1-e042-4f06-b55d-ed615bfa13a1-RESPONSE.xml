@@ -1,0 +1,61 @@
+<OrderResponse>
+  <Version>2.0</Version>
+  <TransactionHeader>
+    <SenderID>INGRAM MICRO</SenderID>
+    <ReceiverID>IM CUSTOMER</ReceiverID>
+    <ErrorStatus ErrorNumber="">
+    </ErrorStatus>
+    <DocumentID>{847CC575-6AA2-489D-BAEA-EBDB0DBC3D5E}</DocumentID>
+    <TransactionID>{d7ebbbc1-e042-4f06-b55d-ed615bfa13a1}</TransactionID>
+    <TimeStamp>2017-03-15T02:54:34</TimeStamp>
+  </TransactionHeader>
+  <OrderInfo>
+    <OrderNumbers>
+      <BranchOrderNumber>2980492</BranchOrderNumber>
+      <CustomerPO>0000000004</CustomerPO>
+      <ShipToAttention>ARIBATEST</ShipToAttention>
+      <ThirdPartyFreightAccount>
+      </ThirdPartyFreightAccount>
+      <ShipToAddress1>CALLE INGRAM, BLOQUE MICRO</ShipToAddress1>
+      <ShipToAddress2>
+      </ShipToAddress2>
+      <ShipToCity>28001 MADRID</ShipToCity>
+      <ShipToProvince>28</ShipToProvince>
+      <ShipToPostalCode>28001</ShipToPostalCode>
+      <AddressErrorMessage AddressErrorType="  ">
+      </AddressErrorMessage>
+      <ContractNumber>
+      </ContractNumber>
+      <OrderSuffix Suffix="11">
+        <DistributionWeight>45</DistributionWeight>
+        <SuffixErrorResponse SuffixErrorType="">
+        </SuffixErrorResponse>
+        <Carrier CarrierCode="GN">GPZ NORMAL</Carrier>
+        <LineInformation>
+          <ProductLine>
+            <LineError>
+            </LineError>
+            <SKU>2M3CL95</SKU>
+            <ManufacturerPartNumber>1HK23EA�ABE</ManufacturerPartNumber>
+            <UPC>0190781583141</UPC>
+            <UnitPrice>1011,87</UnitPrice>
+            <IngramLineNumber>001</IngramLineNumber>
+            <CustomerLineNumber>10</CustomerLineNumber>
+            <ShipFromBranch>29</ShipFromBranch>
+            <OrderQuantity>5</OrderQuantity>
+            <AllocatedQuantity>5</AllocatedQuantity>
+            <BackOrderedQuantity>0</BackOrderedQuantity>
+            <BackOrderETADate>
+            </BackOrderETADate>
+            <PriceDerivedFlag>
+            </PriceDerivedFlag>
+            <ForeignCurrency>0,00</ForeignCurrency>
+            <FreightRate>0,00</FreightRate>
+            <TransitDays>0</TransitDays>
+            <LineBillToSuffix>000</LineBillToSuffix>
+          </ProductLine>
+        </LineInformation>
+      </OrderSuffix>
+    </OrderNumbers>
+  </OrderInfo>
+</OrderResponse>

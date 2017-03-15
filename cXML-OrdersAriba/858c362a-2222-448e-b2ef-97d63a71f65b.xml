@@ -1,0 +1,152 @@
+<cXML payloadID="CFE2AFAF54EC1ED5B9911179F0D39910" timestamp="2016-03-07T18:18:01+01:00" version="1.2.029">
+  <Header>
+    <From>
+      <Credential domain="NetworkID">
+        <Identity>AN01000279414-T</Identity>
+      </Credential>
+      <Credential domain="SystemID">
+        <Identity>C37CLNT010</Identity>
+      </Credential>
+    </From>
+    <To>
+      <Credential domain="NetworkID">
+        <Identity>AN01000348381-T</Identity>
+      </Credential>
+    </To>
+    <Sender>
+      <Credential domain="AribaNetworkUserId">
+        <Identity>sysadmin@ariba.com</Identity>
+      </Credential>
+      <UserAgent>ARBERP/SAP_APPL/617/0008</UserAgent>
+    </Sender>
+  </Header>
+  <Request deploymentMode="test">
+    <OrderRequest>
+      <OrderRequestHeader orderDate="2016-03-07T12:00:00+01:00" orderID="9010051754" orderType="regular" orderVersion="1" type="new">
+        <Total>
+          <Money currency="EUR">5357.02</Money>
+        </Total>
+        <ShipTo>
+          <Address addressID="C372105424" isoCountryCode="ES">
+            <Name xml:lang="en">SERV. CANARIO SALUD-COD.PROV.1715</Name>
+            <PostalAddress name="default">
+              <DeliverTo>2033 Ventas Cliente</DeliverTo>
+              <Street>BARRANCO DE LA BALLENA, S/N</Street>
+              <City>PALMAS DE GRAN CANARIA,LAS</City>
+              <State>35</State>
+              <PostalCode>35010</PostalCode>
+              <Country isoCountryCode="ES" />
+            </PostalAddress>
+          </Address>
+        </ShipTo>
+        <BillTo>
+          <Address isoCountryCode="ES">
+            <Name xml:lang="es">Roche Diagnostics Spain</Name>
+            <PostalAddress name="ROCHE DIAGNOSTICS S.L.">
+              <Street>Av. De la Generalitat, 171-173</Street>
+              <City>Sant Cugat del Vallès</City>
+              <State>08</State>
+              <PostalCode>08174</PostalCode>
+              <Country isoCountryCode="ES" />
+            </PostalAddress>
+            <Phone>
+              <TelephoneNumber>
+                <CountryCode isoCountryCode="ES">34</CountryCode>
+                <AreaOrCityCode>
+                </AreaOrCityCode>
+                <Number>34 93 5834000</Number>
+              </TelephoneNumber>
+            </Phone>
+          </Address>
+          <IdReference domain="buyerID" identifier="1624" />
+        </BillTo>
+        <PaymentTerm payInNumberOfDays="60">
+          <Discount>
+            <DiscountPercent percent="0.000" />
+          </Discount>
+        </PaymentTerm>
+        <Contact role="supplierCorporate">
+          <Name xml:lang="es">INGRAM MICRO, S.L.</Name>
+          <PostalAddress>
+            <Street>Antonio Machado 78-80 1ª y 2ª plant</Street>
+            <City>VILADECANS</City>
+            <State>08</State>
+            <PostalCode>08840</PostalCode>
+            <Country isoCountryCode="ES" />
+          </PostalAddress>
+          <Email name="default">ocolell@ingrammicro.es</Email>
+          <Phone>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES">34</CountryCode>
+              <AreaOrCityCode />
+              <Number>934749135</Number>
+            </TelephoneNumber>
+          </Phone>
+          <Fax>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES">34</CountryCode>
+              <AreaOrCityCode />
+              <Number>934749358</Number>
+            </TelephoneNumber>
+          </Fax>
+        </Contact>
+        <Contact role="sales">
+          <Name xml:lang="es">Susana Mayordomo</Name>
+          <Phone>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES" />
+              <AreaOrCityCode />
+              <Number>934749152</Number>
+            </TelephoneNumber>
+          </Phone>
+        </Contact>
+        <Comments xml:lang="es">TEST - MUY URGENTE!!! SE INCLUYE EL ENVÍO EN AVIÓN HABLADO CON LORENA - TEST</Comments>
+        <TermsOfDelivery>
+          <TermsOfDeliveryCode value="TransportCondition" />
+          <ShippingPaymentMethod value="Other" />
+          <TransportTerms value="CIP">Carriage and insurance paid to</TransportTerms>
+          <Address>
+            <Name xml:lang="es">Ver dirección en pedido</Name>
+          </Address>
+        </TermsOfDelivery>
+        <Extrinsic name="CompanyCode">ROCHE DIAGNOSTICS S.L.</Extrinsic>
+        <Extrinsic name="buyerPurchasingCode">Laura Rodés</Extrinsic>
+        <Extrinsic name="incoTermDesc">Carriage and insurance paid to Ver dirección en pedido</Extrinsic>
+        <Extrinsic name="vendorIDNo">0048001455</Extrinsic>
+        <Extrinsic name="buyerVatID">ESB61503355</Extrinsic>
+        <Extrinsic name="paymentTermsDescription">Within 60 days Due net</Extrinsic>
+        <Extrinsic name="touVersion"> Condiciones de Pago: Según condiciones pactadas.  Por transferencia bancaria a la cuenta que Vds. nos indiquen Quedamos a la espera de su confirmación por escrito, notificándoles que de no recibirla dentro de 10 días, este pedido se entiende aceptado en todas sus partes. El proveedor manifiesta que cumple y cumplirá con las directrices indicadas en el Código de Conducta para Proveedores del Grupo Roche el cual ha recibido. De no haberlo recibido, por favor solicítelo a sant_cugat_dia.procurement@roche.com .</Extrinsic>
+        <Extrinsic name="vendorTerms"> Roche Diagnostics SL Avda. de la Generalitat, 171-173 E-08174 Sant Cugat del Vallès Barcelona España Tel: 935834000 Fax: 935834340 Registro Mercantil de Barcelona, T30354f104 hoja B-173656- C.I.F B61503355 VAT ESB61503355. Sociedad Unipersonal</Extrinsic>
+        <Extrinsic name="nccExtrinsic1"> Uno o más artículos requieren una confirmación de pedido o una notificación de envío</Extrinsic>
+      </OrderRequestHeader>
+      <ItemOut lineNumber="1" quantity="6.0" requestedDeliveryDate="2016-04-22T12:00:00+02:00">
+        <ItemID>
+          <SupplierPartID>EC-FIX_20352334 (RD PROJECT)</SupplierPartID>
+          <BuyerPartID>7295227001        </BuyerPartID>
+        </ItemID>
+        <ItemDetail>
+          <UnitPrice>
+            <Money currency="EUR">892.84</Money>
+          </UnitPrice>
+          <Description xml:lang="es">07295227001 - PC Medium High OMG HP AiO</Description>
+          <UnitOfMeasure>PCE</UnitOfMeasure>
+          <PriceBasisQuantity conversionFactor="1" quantity="1.0">
+            <UnitOfMeasure>PCE</UnitOfMeasure>
+          </PriceBasisQuantity>
+          <Classification domain="not available">do not use</Classification>
+          <ManufacturerPartID>D0R46AV</ManufacturerPartID>
+          <ManufacturerName xml:lang="es">
+          </ManufacturerName>
+          <Extrinsic name="nccExtrinsic2">X</Extrinsic>
+          <Extrinsic name="nccExtrinsic4"> Si ha recibido este pedido por e-mail o fax, por favor, inicie sesión en Ariba Network con su usuario y cree una notificación de envío para este pedido</Extrinsic>
+          <Extrinsic name="nccExtrinsic3">
+          </Extrinsic>
+        </ItemDetail>
+        <Comments xml:lang="es">RD Spain Project 600 AIO     Base Model ID: 17415210     Config ID:  18012561 (x1) D0R46AV HP ProOne 600 G1 AiO NT 21.5 (x1) QY447AV Energy Star Label (x1) D0D73AV#ABE Microsoft Windows 7 Professional Edition 64bit OS SP (x1) D3W15AV#ABE Win7 Pro 64 bit OS DVD+ DRDVD SP (x1) J0A65AV Intel Core i5-4570S 3.0G 6M HD 4600 CPU (x1) D0R25AV 4GB DDR3-1600 SODIMM (1x4GB) RAM (x1) D0R28AV 500GB 7200 RPM 3.5 Hard Drive (x1) E0H22AV#ABE HP USB Keyboard - ME SP (x1) C8N39AV HP USB Mouse (x1) D0R62AV Slim SuperMulti Optical Disc Drive (x1) B2N49AV No Included Media Card Reader (x1) D0P42AV#ABB 3/3/3 (material/labor/onsite) AiO Warranty EURO (x1) D0R18AV 2013 Tilt/Swivel/Recline/HAS 800/600 (x1) D0P45AV#ABE HP ProOne 600 G1 AiO Country Kit SP (x1) A3D07AV Microsoft Lync Label (x1) UE379AV HP 3 year Next business day Onsite Optional Customer Self Repair Desktop/Workstation Only HW Service (x1) ZD011AV #N/A</Comments>
+        <ScheduleLine lineNumber="0001" quantity="6.0" requestedDeliveryDate="2016-04-22T12:00:00+02:00">
+          <UnitOfMeasure>PCE</UnitOfMeasure>
+        </ScheduleLine>
+      </ItemOut>
+    </OrderRequest>
+  </Request>
+</cXML>

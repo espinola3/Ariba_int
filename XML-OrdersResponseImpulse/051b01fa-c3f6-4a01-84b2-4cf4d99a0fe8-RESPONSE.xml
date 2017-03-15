@@ -1,0 +1,127 @@
+<cXML payloadID="005056813CFE1EE6BF98634C6331DEDB" timestamp="2017-02-27T09:02:37+01:00" version="1.2.026">
+  <Header>
+    <From>
+      <Credential domain="NetworkID">
+        <Identity>AN01007795981-T</Identity>
+      </Credential>
+      <Credential domain="SystemID">
+        <Identity>Q01CLNT360</Identity>
+      </Credential>
+    </From>
+    <To>
+      <Credential domain="NetworkID">
+        <Identity>AN01023231277-T</Identity>
+      </Credential>
+    </To>
+    <Sender>
+      <Credential domain="AribaNetworkUserId">
+        <Identity>sysadmin@ariba.com</Identity>
+      </Credential>
+      <UserAgent>ARBERP/SAP_APPL/617/0000000006</UserAgent>
+    </Sender>
+  </Header>
+  <Request deploymentMode="test">
+    <OrderRequest>
+      <OrderRequestHeader orderDate="2017-02-27T12:00:00+01:00" orderID="0000000002" orderType="regular" orderVersion="1" type="new">
+        <Total>
+          <Money currency="EUR">22.1</Money>
+        </Total>
+        <ShipTo>
+          <Address addressIDDomain="buyerLocationID" isoCountryCode="ES">
+            <Name xml:lang="en">Atos IT Solutions and Services Iberia SL</Name>
+            <PostalAddress name="default">
+              <Street>Calle Albarracin 25</Street>
+              <City>MADRID</City>
+              <State>28</State>
+              <PostalCode>28037</PostalCode>
+              <Country isoCountryCode="ES" />
+            </PostalAddress>
+          </Address>
+          <IdReference domain="buyerLocationID" identifier="0755" />
+        </ShipTo>
+        <BillTo>
+          <Address isoCountryCode="ES">
+            <Name xml:lang="es">0755</Name>
+            <PostalAddress name="Atos IT Solutions and Services Iberia S.L. 0755">
+              <DeliverTo>Atos IT Solutions and Services Iberia S.L. 0755</DeliverTo>
+              <Street>Calle Albarracin 25</Street>
+              <City>Madrid</City>
+              <PostalCode>28037</PostalCode>
+              <Country isoCountryCode="ES" />
+            </PostalAddress>
+          </Address>
+          <IdReference domain="buyerID" identifier="0755" />
+        </BillTo>
+        <PaymentTerm payInNumberOfDays="60">
+          <Discount>
+            <DiscountPercent percent="0.000" />
+          </Discount>
+        </PaymentTerm>
+        <Contact addressIDDomain="buyerID" role="supplierCorporate">
+          <Name xml:lang="en">INGRAM MICRO S.L.</Name>
+          <PostalAddress>
+            <Street>AVENIDA DEL MARESME 62-64</Street>
+            <City>CORNELLA DE LLOBREGAT (BARCELO</City>
+            <State>08</State>
+            <PostalCode>08940</PostalCode>
+            <Country isoCountryCode="ES" />
+          </PostalAddress>
+          <Email name="default">Matilde.buatas@ingrammicro.com</Email>
+          <Phone>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES">34</CountryCode>
+              <AreaOrCityCode />
+              <Number>934749086</Number>
+            </TelephoneNumber>
+          </Phone>
+          <Fax>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES">34</CountryCode>
+              <AreaOrCityCode />
+              <Number>934749014</Number>
+            </TelephoneNumber>
+          </Fax>
+          <IdReference domain="buyerID" identifier="0000061053" />
+        </Contact>
+        <Contact role="sales">
+          <Name xml:lang="en">Joan Santasusana</Name>
+          <Phone>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES" />
+              <AreaOrCityCode />
+              <Number>934749233</Number>
+            </TelephoneNumber>
+          </Phone>
+        </Contact>
+        <Extrinsic name="incoTerm" />
+        <Extrinsic name="paymentTermsDescription">Within 60 days Due net</Extrinsic>
+        <Extrinsic name="governmentRegistrationNo">Registro Mercantil de Madrid, T 27.611, L.0, F.11, S.8, H. M-497563, I.1</Extrinsic>
+        <Extrinsic name="buyerVatID">ESB85908093</Extrinsic>
+        <Extrinsic name="purchaseDescription">Telephone:+34 93 242 3724/3727;FAX:+34 93 504 3501;EMAIL:ricard.navarro@atos.net</Extrinsic>
+        <Extrinsic name="Changes"> If this order is not accepted as issued, we request for it to be returned to the order desk with your remarks</Extrinsic>
+        <Extrinsic name="vendorTerms"> This Purchase Order is subject to Atos terms of trade and purchase of goods and services (a copy of which is available on request), unless reference to a specific contract is given on the Purchase Order in which case the terms and conditions of the specified contract shall apply in conjunction with Atos terms of trade and purchase of goods and services in the order of priority identified in the specified contract.</Extrinsic>
+        <Extrinsic name="Signature"> This document is produced in an automated process and therefore is not signed</Extrinsic>
+        <Extrinsic name="Notes"> Payment of invoices may be delayed if the order and item numbers are not quoted.</Extrinsic>
+      </OrderRequestHeader>
+      <ItemOut lineNumber="10" quantity="5.0" requestedDeliveryDate="2017-03-03T12:00:00+01:00">
+        <ItemID>
+          <SupplierPartID>1HK23EA#ABE</SupplierPartID>
+        </ItemID>
+        <ItemDetail>
+          <UnitPrice>
+            <Money currency="EUR">4.42</Money>
+          </UnitPrice>
+          <Description xml:lang="en">B100974-AURICULARES PC CHAT CON MICRO MOD INSONIC NEGRO</Description>
+          <UnitOfMeasure>EA</UnitOfMeasure>
+          <PriceBasisQuantity conversionFactor="1" quantity="1.0">
+            <UnitOfMeasure>EA</UnitOfMeasure>
+          </PriceBasisQuantity>
+          <Classification domain="not available">PC Peripherals</Classification>
+        </ItemDetail>
+        <ScheduleLine lineNumber="0001" quantity="5.0" requestedDeliveryDate="2017-03-03T12:00:00+01:00">
+          <UnitOfMeasure>EA</UnitOfMeasure>
+        </ScheduleLine>
+      </ItemOut>
+    </OrderRequest>
+  </Request>
+</cXML>

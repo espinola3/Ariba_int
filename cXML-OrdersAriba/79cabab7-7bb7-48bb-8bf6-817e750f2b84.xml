@@ -1,0 +1,12 @@
+<PNARequest>
+  <TransactionHeader>
+    <SenderID>IM CUSTOMER</SenderID>
+    <ReceiverID>INGRAM MICRO</ReceiverID>
+    <CountryCode>ES</CountryCode>
+    <LoginID>ESPINOLA</LoginID>
+    <Password>Imes-12345</Password>
+    <TransactionID>{14B27C08-ADA6-406B-B7E3-4103A5408C2A}</TransactionID>
+  </TransactionHeader>
+  <PNAInformation SKU="" ManufacturerPartNumber="E3E03A#A81" Quantity="1" ReservedInventory="N" />
+  <ShowDetail>2</ShowDetail>
+</PNARequest>

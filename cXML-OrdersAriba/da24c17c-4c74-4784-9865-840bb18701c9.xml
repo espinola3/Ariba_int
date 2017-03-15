@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cXML payloadID="005056811B351ED693AFBC8D9CC2615B" timestamp="2016-07-19T08:56:18+02:00" version="1.2.026">
+  <Header>
+    <From>
+      <Credential domain="NetworkID">
+        <Identity>AN01000279414</Identity>
+      </Credential>
+      <Credential domain="SystemID">
+        <Identity>Q01CLNT360</Identity>
+      </Credential>
+    </From>
+    <To>
+      <Credential domain="NetworkID">
+        <Identity>AN01000348381</Identity>
+      </Credential>
+    </To>
+    <Sender>
+      <Credential domain="AribaNetworkUserId">
+        <Identity>sysadmin@ariba.com</Identity>
+      </Credential>
+      <UserAgent>ARBERP/SAP_APPL/617/0006</UserAgent>
+    </Sender>
+  </Header>
+  <Request deploymentMode="test">
+    <OrderRequest>
+      <OrderRequestHeader orderDate="2016-06-13T12:00:00+02:00" orderID="4900450574" orderType="regular" orderVersion="3" type="update">
+        <Total>
+          <Money currency="EUR">31537.0</Money>
+        </Total>
+        <BillTo>
+          <Address isoCountryCode="ES">
+            <Name xml:lang="es">0755</Name>
+            <PostalAddress name="Atos IT Solutions and Services Iberia S.L. 0755">
+              <DeliverTo>Atos IT Solutions and Services Iberia S.L. 0755</DeliverTo>
+              <Street>Calle Albarracin 25</Street>
+              <City>Madrid</City>
+              <PostalCode>28037</PostalCode>
+              <Country isoCountryCode="ES" />
+            </PostalAddress>
+          </Address>
+          <IdReference domain="buyerID" identifier="0755" />
+        </BillTo>
+        <PaymentTerm payInNumberOfDays="60">
+          <Discount>
+            <DiscountPercent percent="0.000" />
+          </Discount>
+        </PaymentTerm>
+        <Contact addressIDDomain="buyerID" role="supplierCorporate">
+          <Name xml:lang="en">INGRAM MICRO S.L.</Name>
+          <PostalAddress>
+            <Street>AVENIDA DEL MARESME 62-64</Street>
+            <City>CORNELLA DE LLOBREGAT (BARCELO</City>
+            <State>08</State>
+            <PostalCode>08940</PostalCode>
+            <Country isoCountryCode="ES" />
+          </PostalAddress>
+          <Email name="default">Matilde.buatas@ingrammicro.com</Email>
+          <Phone>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES">34</CountryCode>
+              <AreaOrCityCode />
+              <Number>934749086</Number>
+            </TelephoneNumber>
+          </Phone>
+          <Fax>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES">34</CountryCode>
+              <AreaOrCityCode />
+              <Number>934749014</Number>
+            </TelephoneNumber>
+          </Fax>
+          <IdReference domain="buyerID" identifier="0000061053" />
+        </Contact>
+        <Contact role="sales">
+          <Name xml:lang="en">Joan Santasusana</Name>
+          <Phone>
+            <TelephoneNumber>
+              <CountryCode isoCountryCode="ES" />
+              <AreaOrCityCode />
+              <Number>934749233</Number>
+            </TelephoneNumber>
+          </Phone>
+        </Contact>
+        <DocumentReference payloadID="005056813CAE1ED68CA9070DD411FFBE" />
+        <Extrinsic name="incoTerm" />
+        <Extrinsic name="paymentTermsDescription">Within 60 days Due net</Extrinsic>
+        <Extrinsic name="governmentRegistrationNo">Registro Mercantil de Madrid, T 27.611, L.0, F.11, S.8, H. M-497563, I.1</Extrinsic>
+        <Extrinsic name="buyerVatID">ESB85908093</Extrinsic>
+        <Extrinsic name="purchaseDescription">Telephone:+34 93 242 3724/3727;FAX:+34 93 504 3501;EMAIL:ricard.navarro@atos.net</Extrinsic>
+        <Extrinsic name="Changes"> If this order is not accepted as issued, we request for it to be returned to the order desk with your remarks</Extrinsic>
+        <Extrinsic name="vendorTerms"> This Purchase Order is subject to Atos terms of trade and purchase of goods and services (a copy of which is available on request), unless reference to a specific contract is given on the Purchase Order in which case the terms and conditions of the specified contract shall apply in conjunction with Atos terms of trade and purchase of goods and services in the order of priority identified in the specified contract.</Extrinsic>
+        <Extrinsic name="Signature"> This document is produced in an automated process and therefore is not signed</Extrinsic>
+        <Extrinsic name="Notes"> Payment of invoices may be delayed if the order and item numbers are not quoted.</Extrinsic>
+      </OrderRequestHeader>
+      <ItemOut lineNumber="100" quantity="2.0" requestedDeliveryDate="2016-06-17T12:00:00+02:00">
+        <ItemID>
+          <SupplierPartID>123456JAGODA</SupplierPartID>
+        </ItemID>
+        <ItemDetail>
+          <UnitPrice>
+            <Money currency="EUR">6523.0</Money>
+          </UnitPrice>
+          <Description xml:lang="en">PC-pc for Marian Kowalski</Description>
+          <UnitOfMeasure>EA</UnitOfMeasure>
+          <PriceBasisQuantity conversionFactor="1" quantity="1.0">
+            <UnitOfMeasure>EA</UnitOfMeasure>
+          </PriceBasisQuantity>
+          <Classification domain="not available">PC</Classification>
+        </ItemDetail>
+        <ShipTo>
+          <Address addressIDDomain="buyerLocationID" isoCountryCode="ES">
+            <Name xml:lang="en">Atos IT Solutions and Services Iberia SL</Name>
+            <PostalAddress>
+              <Street>Malla 2</Street>
+              <City>Tres Cantos</City>
+              <State>28</State>
+              <PostalCode>28760</PostalCode>
+              <Country isoCountryCode="ES">
+              </Country>
+            </PostalAddress>
+          </Address>
+          <IdReference domain="buyerLocationID" identifier="0755">
+          </IdReference>
+        </ShipTo>
+        <ScheduleLine lineNumber="0001" quantity="2.0" requestedDeliveryDate="2016-06-17T12:00:00+02:00">
+          <UnitOfMeasure>EA</UnitOfMeasure>
+        </ScheduleLine>
+      </ItemOut>
+      <ItemOut lineNumber="200" quantity="1.0" requestedDeliveryDate="2016-06-17T12:00:00+02:00">
+        <ItemID>
+          <SupplierPartID>1234567JAGODA</SupplierPartID>
+        </ItemID>
+        <ItemDetail>
+          <UnitPrice>
+            <Money currency="EUR">2589.0</Money>
+          </UnitPrice>
+          <Description xml:lang="en">PC1-PC for Marianna Zygfrycka</Description>
+          <UnitOfMeasure>EA</UnitOfMeasure>
+          <PriceBasisQuantity conversionFactor="1" quantity="1.0">
+            <UnitOfMeasure>EA</UnitOfMeasure>
+          </PriceBasisQuantity>
+          <Classification domain="not available">PC</Classification>
+        </ItemDetail>
+        <ShipTo>
+          <Address addressIDDomain="buyerLocationID" isoCountryCode="ES">
+            <Name xml:lang="en">Atos IT Solutions</Name>
+            <PostalAddress>
+              <Street>Calera6 2</Street>
+              <City>MADRID</City>
+              <State>28</State>
+              <PostalCode>28033</PostalCode>
+              <Country isoCountryCode="ES">
+              </Country>
+            </PostalAddress>
+          </Address>
+          <IdReference domain="buyerLocationID" identifier="0755">
+          </IdReference>
+        </ShipTo>
+        <ScheduleLine lineNumber="0001" quantity="1.0" requestedDeliveryDate="2016-06-17T12:00:00+02:00">
+          <UnitOfMeasure>EA</UnitOfMeasure>
+        </ScheduleLine>
+      </ItemOut>
+      <ItemOut lineNumber="300" quantity="6.0" requestedDeliveryDate="2016-06-17T12:00:00+02:00">
+        <ItemID>
+          <SupplierPartID>12345678JAGODA</SupplierPartID>
+        </ItemID>
+        <ItemDetail>
+          <UnitPrice>
+            <Money currency="EUR">253.0</Money>
+          </UnitPrice>
+          <Description xml:lang="en">pc2-PC for Zenobia Genowinska</Description>
+          <UnitOfMeasure>EA</UnitOfMeasure>
+          <PriceBasisQuantity conversionFactor="1" quantity="1.0">
+            <UnitOfMeasure>EA</UnitOfMeasure>
+          </PriceBasisQuantity>
+          <Classification domain="not available">PC</Classification>
+        </ItemDetail>
+        <ShipTo>
+          <Address addressIDDomain="buyerLocationID" isoCountryCode="ES">
+            <Name xml:lang="en">Atos IT Solutions and Services Iberia SL</Name>
+            <PostalAddress>
+              <Street>Calle Albarracin 25</Street>
+              <City>Tres Cantos</City>
+              <State>28</State>
+              <PostalCode>28760</PostalCode>
+              <Country isoCountryCode="ES">
+              </Country>
+            </PostalAddress>
+          </Address>
+          <IdReference domain="buyerLocationID" identifier="0755">
+          </IdReference>
+        </ShipTo>
+        <ScheduleLine lineNumber="0001" quantity="6.0" requestedDeliveryDate="2016-06-17T12:00:00+02:00">
+          <UnitOfMeasure>EA</UnitOfMeasure>
+        </ScheduleLine>
+      </ItemOut>
+      <ItemOut lineNumber="400" quantity="4.0" requestedDeliveryDate="2016-06-17T12:00:00+02:00">
+        <ItemID>
+          <SupplierPartID>123456789JAGODA</SupplierPartID>
+        </ItemID>
+        <ItemDetail>
+          <UnitPrice>
+            <Money currency="EUR">3596.0</Money>
+          </UnitPrice>
+          <Description xml:lang="en">pc3-PC for Maurycy Kasinski</Description>
+          <UnitOfMeasure>EA</UnitOfMeasure>
+          <PriceBasisQuantity conversionFactor="1" quantity="1.0">
+            <UnitOfMeasure>EA</UnitOfMeasure>
+          </PriceBasisQuantity>
+          <Classification domain="not available">PC</Classification>
+        </ItemDetail>
+        <ShipTo>
+          <Address addressIDDomain="buyerLocationID" isoCountryCode="ES">
+            <Name xml:lang="en">Atos IT Solutions and Services Iberia SL</Name>
+            <PostalAddress>
+              <Street>Calle Albarracin 25</Street>
+              <City>MADRID</City>
+              <State>28</State>
+              <PostalCode>28037</PostalCode>
+              <Country isoCountryCode="ES">
+              </Country>
+            </PostalAddress>
+          </Address>
+          <IdReference domain="buyerLocationID" identifier="0755">
+          </IdReference>
+        </ShipTo>
+        <ScheduleLine lineNumber="0001" quantity="4.0" requestedDeliveryDate="2016-06-17T12:00:00+02:00">
+          <UnitOfMeasure>EA</UnitOfMeasure>
+        </ScheduleLine>
+      </ItemOut>
+    </OrderRequest>
+  </Request>
+</cXML>

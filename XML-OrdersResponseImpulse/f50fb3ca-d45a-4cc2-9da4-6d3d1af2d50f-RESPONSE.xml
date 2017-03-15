@@ -1,0 +1,63 @@
+<OrderResponse>
+  <Version>2.0</Version>
+  <TransactionHeader>
+    <SenderID>INGRAM MICRO</SenderID>
+    <ReceiverID>IM CUSTOMER</ReceiverID>
+    <ErrorStatus ErrorNumber="">
+    </ErrorStatus>
+    <DocumentID>{27B982CE-D18F-437C-A9C8-363A7CA46B1E}</DocumentID>
+    <TransactionID>{14B27C08-ADA6-406B-B7E3-4103A5408C2A}</TransactionID>
+    <TimeStamp>2017-03-02T09:26:54</TimeStamp>
+  </TransactionHeader>
+  <OrderInfo>
+    <OrderNumbers>
+      <BranchOrderNumber>2953703</BranchOrderNumber>
+      <CustomerPO>1000000003</CustomerPO>
+      <ShipToAttention>ARIBATEST</ShipToAttention>
+      <ThirdPartyFreightAccount>
+      </ThirdPartyFreightAccount>
+      <ShipToAddress1>
+      </ShipToAddress1>
+      <ShipToAddress2>
+      </ShipToAddress2>
+      <ShipToCity>
+      </ShipToCity>
+      <ShipToProvince>
+      </ShipToProvince>
+      <ShipToPostalCode>
+      </ShipToPostalCode>
+      <AddressErrorMessage AddressErrorType="  ">
+      </AddressErrorMessage>
+      <ContractNumber>
+      </ContractNumber>
+      <OrderSuffix Suffix="11">
+        <DistributionWeight>0</DistributionWeight>
+        <SuffixErrorResponse SuffixErrorType="">
+        </SuffixErrorResponse>
+        <Carrier CarrierCode="GN">GPZ NORMAL</Carrier>
+        <LineInformation>
+          <ProductLine>
+            <LineError>
+            </LineError>
+            <SKU>2M3CL95</SKU>
+            <ManufacturerPartNumber>1HK23EA�ABE</ManufacturerPartNumber>
+            <UnitPrice>1011,87</UnitPrice>
+            <IngramLineNumber>001</IngramLineNumber>
+            <CustomerLineNumber>10</CustomerLineNumber>
+            <ShipFromBranch>29</ShipFromBranch>
+            <OrderQuantity>5</OrderQuantity>
+            <AllocatedQuantity>0</AllocatedQuantity>
+            <BackOrderedQuantity>5</BackOrderedQuantity>
+            <BackOrderETADate>2017-03-10</BackOrderETADate>
+            <PriceDerivedFlag>
+            </PriceDerivedFlag>
+            <ForeignCurrency>0,00</ForeignCurrency>
+            <FreightRate>0,00</FreightRate>
+            <TransitDays>0</TransitDays>
+            <LineBillToSuffix>000</LineBillToSuffix>
+          </ProductLine>
+        </LineInformation>
+      </OrderSuffix>
+    </OrderNumbers>
+  </OrderInfo>
+</OrderResponse>
